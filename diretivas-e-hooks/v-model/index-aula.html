@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="./vue.js"></script>
+  <title>V-model</title>
+</head>
+<body>
+
+  <div id="app">
+    <input v-model.lazy="nome"> <!-- apenas quando a pessoa sai do campo, e nao a cada tecla digitada -->
+    <input v-model="email"></input>
+
+    <input type="checkbox" v-model="receberEmail"> Receber Email
+    <label for="receberEmail">{{receberEmail}} </label>
+    <p>nome: {{nome}}</p>
+
+    <div>
+      <input type="radio" name="azul" v-model="cor" value="Azul">
+      <label for="azul">Azul</label>
+      <input type="radio" name="vermelho" v-model="cor" value="Vermelho">
+      <label for="vermelho">Vermelho</label>
+      <input type="radio" name="verde"  v-model="cor" value="Verde">
+      <label for="verde">Verde</label>
+      {{cor}}
+    </div>
+
+    <div>
+      <select v-model="fruta">
+        <option disabled value="">Selecione uma Fruta</option>
+        <option value="banana">banana</option>
+        <option value="morango">morango</option>
+        <option value="uva">uva</option> <!-- ele puxa o valor de value -->
+      </select>
+      {{fruta}}
+    </div>
+
+
+  </div>
+  <script>
+
+    const vm = new Vue({ 
+      el: "#app",
+      data: { 
+        nome: "",
+        email: "",
+        receberEmail: "",
+        cor: "",
+        fruta:""
+      },
+      methods: {
+        
+      }
+    });
+  </script>
+
+  <style>
+ 
+  </style>
+</body>
+</html>

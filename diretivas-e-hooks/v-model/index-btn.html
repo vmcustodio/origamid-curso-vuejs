@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="./vue.js"></script>
+  <title>V-model</title>
+</head>
+<body><!-- 
+  1 - Crie um criador de botões.
+
+  O usuário poderá definir:
+  width,
+  height,
+  font-size
+ -->
+
+  <div id="app">
+    <input type="color" v-model="btn.background">
+    <label for="width">Width</label>
+    <input type="text" id="width" v-model="btn.width">
+    <label for="height">Height</label>
+    <input type="text" id="height" v-model="btn.height">
+    <label for="fontSize">Font Size</label>
+    <input type="text" id="fontSize" v-model="btn.fontSize">
+    <a :style="btn" href="">Clique Aqui</a>
+  </div>
+
+  <script>
+
+    const vm = new Vue({ 
+      el: "#app",
+      data: { 
+       btn: {
+         background: "",
+         width: "0px",
+         height: "40px",
+         fontSize: "20px"
+       }
+      }
+    });
+  </script>
+
+<style>
+  label {
+    display: block;
+  }
+
+  a {
+    margin-top: 100px;
+    display: block;
+  }
+</style>
+</body>
+</html>
