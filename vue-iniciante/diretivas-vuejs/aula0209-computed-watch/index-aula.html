@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="./vue.js"></script>
+  <title>COMPUTED E WATCH</title>
+</head>
+<body>
+  <div id="app">
+   <!-- <h1>{{preco - desconto}}</h1> -->
+   <h2>{{total}}</h2>
+   <ul>
+     <li v-for="carro in carrosAzuis">
+       {{carro.marca}}
+     </li>
+     <button @click="removerCarro">Remover Carro</button>
+
+     <p>{{contador}}</p>
+     <button @click="contador++">Adicionar</button>
+   </ul>
+  </div>
+
+  <script>
+    const vm = new Vue({
+      el: "#app",
+      data: {
+       preco: 59,
+       desconto: 10,
+       contador: 0,
+       carros: [
+      {
+        marca: "VW",
+        cor: "Azul"
+      },
+      {
+        marca: "Ford",
+        cor: "Preto"
+      },
+      {
+        marca: "Tesla",
+        cor: "Azul"
+      }
+      ]
+      },
+      computed: {
+        total() {
+          return "R$" + (this.preco - this.desconto);
+        },
+        carrosAzuis() {
+          return this.carros.filter(({cor}) => cor === "Azul");
+        }
+      },
+      methods: {
+        removerCarro() {
+          this.carros.pop();
+        }
+      },
+      watch: {
+        contador(valorNovo, valorAntigo) { // nome precisa ser igual a propriedade
+          // alert(this.contador);
+          // this.removerCarro();
+        },
+        carros(valorNovo, valorAntigo) {
+          console.log(valorNovo);
+        }
+      }
+    })
+  </script>
+</body>
+</html>
