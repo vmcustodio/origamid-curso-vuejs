@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="./vue.js"></script>
+  <title>Events - COMUNICAÇÃO PAI FILHO</title>
+</head>
+<body>
+
+  <div id="app">
+    {{contador}}
+   <meu-botao 
+    :contador.sync="contador"
+   ></meu-botao>
+  </div>
+   <!-- @update:contador="contador = $event" =>> 4º ativa o metodo, que diz que contador é igual a event, event é a propria mensagem que esta sendo passada. Porem com o .sync ele já adiciona isso direto, porem o nome do update com o nome.sync devem ser os MESMOS para funcionar-->
+
+  <script type="module">
+  const MeuBotao = {
+    name: "MeuBotao",
+    props: ["contador"],
+    data() {
+      return {
+        contadorComponente: this.contador
+      }
+    },
+    template: `<button @click="incrementar">Clique {{contadorComponente}}</button>`, // 1º ativa o metodo incremnetar
+    methods: {
+     incrementar() {
+       this.contadorComponente++; // 2º adiciona mais um ao contadorComponente, que é uma data reativa desse componente, e atribuiu a ela o valor que vem da propriedade contador que vem de cima pra baixo, depois que isso ocorre: 
+       this.$emit("update:contador", this.contadorComponente) // 3º emite um evento que faz o update desse contador, e por segundo a mensagem que quer enviar, que no caso é o novo valor do this.contadorComponente
+     }
+    }
+  }
+
+    const vm = new Vue({ 
+      el: "#app",
+      data: { 
+        contador: 0 // passando propriedade do componente pai
+      },
+      components: {
+        MeuBotao
+      },
+      methods: {
+      }
+    });
+  </script>
+
+ 
+</body>
+</html>
