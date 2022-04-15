@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <!-- {{$store.state.acao}} api nao estava retornando - verificar -->
+    <!-- {{$store.state.acao}} api nao estava retornando, acao sendo o nome do modulo- verificar -->
   <ul>
     <li v-for="livro in $store.state.livros" :key="livro.nome">
       <p>{{livro.nome}}</p>
@@ -28,7 +28,7 @@ export default {
     Curso
   },
   created() {
-    this.$store.dispatch("puxarAcao");
+    this.$store.dispatch("acao/puxarAcao");
   }
 }
 </script>
